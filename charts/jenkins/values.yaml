@@ -263,7 +263,7 @@ master:
   #   -Dcom.sun.management.jmxremote.port=4000
   #   -Dcom.sun.management.jmxremote.authenticate=false
   #   -Dcom.sun.management.jmxremote.ssl=false
-  # jmxPort: 4000
+  # jmxPort: 4000a
   # Optionally configure other ports to expose in the master container
   extraPorts: []
   # - name: BuildInfoProxy
@@ -271,33 +271,35 @@ master:
 
   # List of plugins to be install during Jenkins master start
   installPlugins:
-    - configuration-as-code:1.47
+    - configuration-as-code:1.51
     - kubernetes-credentials-provider:0.18-1     #previous 0.16
     - monitoring:1.87.0       #previous 1.86.0
-    - kubernetes:1.29.2
+    - kubernetes:1.29.6
     - git-parameter:0.9.13
     - extended-choice-parameter:0.82
     # - workflow-multibranch:2.22
-    - workflow-cps:2.90
-    - workflow-job:2.40
+    - workflow-cps:2.92
+    - workflow-job:2.41
     - workflow-aggregator:2.6
-    - credentials-binding:1.24
-    - git:4.7.1
-    - docker-build-step:2.6
+    - credentials-binding:1.25
+    - git:4.7.2
+    - ansicolor:1.0.0
+    - docker-build-step:2.7
     - oki-docki:1.1
-    - slack:2.46
-    - role-strategy:3.1.1      #previous 3.1
+    - slack:2.48
+    - role-strategy:3.1.1     
     - github-oauth:0.33
     - authorize-project:1.4.0
     - rebuild:1.32
-    - command-launcher:1.5
+    - command-launcher:1.6
     - jdk-tool:1.5
-    - timestamper:1.12
-    - sonar:2.13
+    - timestamper:1.13
+    - sonar:2.13.1
     - docker-workflow:1.26
-    - jobConfigHistory:2.27   # previous 2.26
+    - jobConfigHistory:2.27   
     - workflow-basic-steps:2.23
     - buildtriggerbadge:2.10
+    - dark-theme:0.0.12
     
   # List of plugins to install in addition to those listed in master.installPlugins
   additionalPlugins: []
@@ -712,7 +714,7 @@ master:
       <description/>
       <keepDependencies>false</keepDependencies>
       <properties>
-      <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
+      <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.32">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
       </com.sonyericsson.rebuild.RebuildSettings>
@@ -807,8 +809,8 @@ master:
       </parameterDefinitions>
       </hudson.model.ParametersDefinitionProperty>
       </properties>
-      <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.87">
-      <scm class="hudson.plugins.git.GitSCM" plugin="git@4.5.1">
+      <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.92">
+      <scm class="hudson.plugins.git.GitSCM" plugin="git@4.7.1">
       <configVersion>2</configVersion>
       <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -844,7 +846,13 @@ master:
   JCasC:
     enabled: true
     defaultConfig: true
-    configScripts: {}
+    configScripts: 
+      jenkins: |-
+        unclassified: 
+          themeManager:
+            disableUserThemes: true
+            theme: "darkSystem" 
+    # use 'dark' for forcing the dark theme regardless of OS settings
     #  welcome-message: |
     #    jenkins:
     #      systemMessage: Welcome to our CI\CD server.  This Jenkins is configured and managed 'as code'.
