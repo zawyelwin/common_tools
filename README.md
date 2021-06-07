@@ -78,54 +78,69 @@ Please note that once you generate your client secret you will not be able to re
 6. Configure  the `common_tools.tfvars` file 
 
 ```
+## Your main configurations for common tools 
 google_bucket_name        = ""          # Write your bucket name from google cloud
-deployment_name           = ""          # Configure a deployment name
 google_project_id         = ""          # Write your project id from google cloud
 google_domain_name        = ""          # your domain name
-credentials               = ""          # file name your credentials located
+google_credentials_json   = ""          # file name your credentials located
 deployment_environment    = ""          # namespace you like to deploy
-vault_token               = ""          # LEAVE BLANK
+deployment_name           = ""          # Configure a deployment name
+
+
+## Your Jenkins configuration !!
 jenkins = {
-  admin_user             = ""           # Configure jenkins admin username
-  admin_password         = ""           # Configure strong password for Jenkins admin
-  jenkins_auth_client_id = ""           # Client ID for jenkins from your github oAuth Apps
-  jenkins_auth_secret    = ""           # Client Secret for jenkins from your github oAuth Apps
-  git_token              = ""           # Github token
-  git_username           = ""           # Github username
+  admin_user              = ""           # Configure jenkins admin username
+  admin_password          = ""           # Configure strong password for Jenkins admin
+  jenkins_auth_client_id  = ""           # Client ID for jenkins from your github oAuth Apps
+  jenkins_auth_secret     = ""           # Client Secret for jenkins from your github oAuth Apps
+  git_token               = ""           # Github token
+  git_username            = ""           # Github username
 }
+
+
+## Your Nexus configuration !!
 nexus = {
-  admin_password        = ""            # Configure strong password for Nexus admin  
+  admin_password          = ""            # Configure strong password for Nexus admin  
 }
+
+
+## Your Grafana configuration !!
 grafana = {
-  grafana_username                = ""      # Configure grafana admin username
-  grafana_password                = ""      # Configure strong password for Grafana
-  grafana-name                    = ""      # Configure a name for your grafana
-  grafana_auth_client_id          = ""      # Client ID for grafana from your github oAuth Apps
-  grafana_client_secret           = ""      # Client Secret for grafana from your github oAuth Apps
-  smtp_username                   = ""      # Client ID for grafana from your github oAuth Apps
-  smtp_password                   = ""      # Client ID for grafana from your github oAuth Apps
-  slack_url                       = ""      # Slack channel url for alerts
-  github_organization             = ""      # your organization name from github
+  grafana_username        = ""      # Configure grafana admin username
+  grafana_password        = ""      # Configure strong password for Grafana
+  grafana_auth_client_id  = ""      # Client ID for grafana from your github oAuth Apps
+  grafana_client_secret   = ""      # Client Secret for grafana from your github oAuth Apps
+  slack_url               = ""      # Slack channel url for alerts
+  github_organization     = ""      # your organization name from github
 }
+
+
+## Your Kubernetes Dashboard configuration !!
 kube_dashboard = {
-  github_auth_client_id = ""        # Client ID for kube dashboard from your github oAuth Apps
-  github_auth_secret    = ""        # Client Secret for kube dashboard from your github oAuth Apps
-  github_organization   = ""        # Your organiation name from github
+  github_auth_client_id   = ""        # Client ID for kube dashboard from your github oAuth Apps
+  github_auth_secret      = ""        # Client Secret for kube dashboard from your github oAuth Apps
+  github_organization     = ""        # Your organiation name from github
 }
+
+
+## Your SonarQube configuration !!
 sonarqube = {
   sonarqube_auth_client_id  = ""        # Client ID for Sonarqube from your github oAuth Apps
   sonarqube_auth_secret     = ""        # Client Secret for Sonarqube from your github oAuth Apps
   admin_password            = ""        # Configure a strong password for sonarqube admin
 }
 
+
 #create lists of trusted IP addresses or IP ranges from which your users can access your domains
 common_tools_access = [ 
-                        "10.16.0.27/8",         ## Cluster access
-                        "50.194.68.229/32",     ## Office IP1 
-                        "50.194.68.230/32",     ## Office IP2
-                        "50.194.68.237/32",     ## fsadykov home
-                        "#.#.#.#",              ## Add your IP address (Required)
+  "10.16.0.27/8",         ## Cluster access
+  "50.194.68.229/32",     ## Office IP1 
+  "50.194.68.230/32",     ## Office IP2
+  "50.194.68.237/32",     ## fsadykov home
+  "#.#.#.#",              ## Add your IP address (Required)
 ]
+
+## Set to <false> to do not show password on terraform output
 show_passwords                = "true"
 
 

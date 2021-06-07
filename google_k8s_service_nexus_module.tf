@@ -12,5 +12,25 @@ module "nexus_deploy" {
     nexus_password           = "${var.nexus["admin_password"]}"
     nexus_docker_image       = "${var.nexus["nexus_docker_image"]}"
     nexus_ip_ranges          = "${join(",",var.common_tools_access)}"
+    nexus_pvc                = "${kubernetes_persistent_volume_claim.nexus_pv_claim.metadata.0.name}"
+  }
+}
+
+resource "kubernetes_persistent_volume_claim" "nexus_pv_claim" {
+  metadata {
+    name = "nexus"
+    namespace = "${kubernetes_namespace.service_tools.metadata.0.name}"
+  }
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests {
+        storage = "30Gi"
+      }
+    }
+    storage_class_name = "standard"
+  }
+  lifecycle {
+     prevent_destroy = "false"
   }
 }

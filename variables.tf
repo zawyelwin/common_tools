@@ -1,6 +1,6 @@
 
-variable "credentials" {
-  default = "common-service-account.json"
+variable "google_credentials_json" {
+  default = "fuchicorp-service-account.json"
 }
 
 variable "deployment_environment" {
