@@ -141,11 +141,12 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # existingClaim:
+  existingClaim: ${nexus_pvc}
   # annotations:
   #  "helm.sh/resource-policy": keep
   # storageClass: "-"
-  storageSize: 30Gi
+  # storageClass: "standard"
+  # storageSize: 30Gi
   # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
   # pdName: nexus-data-disk
   # fsType: ext4
@@ -192,8 +193,6 @@ ingress:
   labels: {}
   annotations:
     nginx.ingress.kubernetes.io/whitelist-source-range: ${nexus_ip_ranges}
-    nginx.ingress.kubernetes.io/proxy-body-size: 2000m
-    nginx.org/client-max-body-size: 2000m
     cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: nginx    
   # # NOTE: Can't use 'false' due to https://github.com/jetstack/kube-lego/issues/173.
@@ -246,7 +245,7 @@ ingressDocker:
   # kubernetes.io/tls-acme: true
   tls:
     enabled: true
-    secretName: nexus-tls
+    secretName: docker-tls
   # Specify custom rules in addition to or instead of the nexus-proxy rules
   rules:
   - host: ${docker_endpoint}
