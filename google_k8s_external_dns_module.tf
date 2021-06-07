@@ -20,7 +20,7 @@ resource "kubernetes_secret" "external_dns_secret" {
   }
 
   data = {
-    "credentials.json" = "${file("${var.credentials}")}"
+    "credentials.json" = "${file("${var.google_credentials_json}")}"
   }
   type = "generic"
 }
