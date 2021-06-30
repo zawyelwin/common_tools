@@ -1,6 +1,7 @@
 ## FuchiCorp Waypoint Deployment
 module "waypoint_deploy" {
   source                 = "fuchicorp/chart/helm"
+  version                = "0.0.7"
   deployment_name        = "waypoint"
   deployment_environment = "${kubernetes_namespace.service_tools.metadata.0.name}"
   deployment_endpoint    = "waypoint.${var.google_domain_name}"

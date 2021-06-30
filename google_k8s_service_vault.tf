@@ -1,6 +1,7 @@
 ## FuchiCorp Vault Deployment
 module "vault_deploy" {
   source                 = "fuchicorp/chart/helm"
+  version                = "0.0.7"
   deployment_name        = "vault"
   deployment_environment = "${kubernetes_namespace.service_tools.metadata.0.name}"
   deployment_endpoint    = "vault.${var.google_domain_name}"

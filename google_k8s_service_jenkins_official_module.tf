@@ -1,5 +1,6 @@
 module "jenkins_deploy" {
   source = "fuchicorp/chart/helm"
+  version                = "0.0.7"
 
   deployment_name        = "jenkins-deployment"
   deployment_environment = "${kubernetes_namespace.service_tools.metadata.0.name}"

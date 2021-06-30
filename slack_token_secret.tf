@@ -16,4 +16,5 @@ resource "kubernetes_secret" "slack_token" {
   data = {
     "text" = "${var.jenkins["slack_token"]}"
   }
+  depends_on = ["kubernetes_namespace.create_namespaces"]
 }

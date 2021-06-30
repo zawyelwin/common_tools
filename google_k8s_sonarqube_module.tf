@@ -1,5 +1,6 @@
 module "sonarqube_deploy" {
   source                 = "fuchicorp/chart/helm"
+  version                = "0.0.7"
   deployment_name        = "sonarqube"
   deployment_environment = "${kubernetes_namespace.service_tools.metadata.0.name}"
   deployment_endpoint    = "sonarqube.${var.google_domain_name}"
@@ -31,4 +32,5 @@ module "sonarqube_deploy" {
     "username" = "${var.sonarqube["username"]}"
     "password" = "${var.sonarqube["admin_password"]}"
   }
+  depends_on = ["kubernetes_namespace.create_namespaces"]
  }

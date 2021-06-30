@@ -136,7 +136,7 @@ common_tools_access = [
   "10.16.0.27/8",         ## Cluster access
   "50.194.68.229/32",     ## Office IP1 
   "50.194.68.230/32",     ## Office IP2
-  "50.194.68.237/32",     ## fsadykov home
+  "24.12.115.204/32",     ## fsadykov home
   "#.#.#.#",              ## Add your IP address (Required)
 ]
 
