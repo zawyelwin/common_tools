@@ -68,9 +68,9 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "lts"
+  tag: "2.289.1-lts-centos7"
   imagePullPolicy: "Always"
-  imagePullSecretName:
+  imagePullSecretName: 
   # Optionally configure lifetime for master-container
   lifecycle:
   #  postStart:
@@ -272,16 +272,16 @@ master:
   # List of plugins to be install during Jenkins master start
   installPlugins:
     - configuration-as-code:1.51
-    - kubernetes-credentials-provider:0.18-1     #previous 0.16
+    - kubernetes-credentials-provider:0.20    #previous 0.16
     - monitoring:1.87.0       #previous 1.86.0
-    - kubernetes:1.29.6
+    - kubernetes:1.30.0
     - git-parameter:0.9.13
     - extended-choice-parameter:0.82
     # - workflow-multibranch:2.22
     - workflow-cps:2.92
     - workflow-job:2.41
     - workflow-aggregator:2.6
-    - credentials-binding:1.25
+    - credentials-binding:1.26
     - git:4.7.2
     - ansicolor:1.0.0
     - docker-build-step:2.7
