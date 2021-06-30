@@ -1,5 +1,6 @@
 module "prometheus_deploy" {
   source  = "fuchicorp/chart/helm"
+  version                = "0.0.7"
   deployment_name        = "prometheus-deploy"
   deployment_environment = "${kubernetes_namespace.service_tools.metadata.0.name}"
   deployment_endpoint    = "prometheus.${var.google_domain_name}"
